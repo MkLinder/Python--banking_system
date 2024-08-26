@@ -7,7 +7,7 @@ menu = """
 
 saldo = 0
 limite = 500
-extrato = []
+extrato = ""
 numero_saques = 0
 LIMITE_SAQUES = 3
 
@@ -20,10 +20,8 @@ while True:
             print("Valor inválido!")
         else:
             saldo += valor_deposito
-            extrato.append({
-                "deposito": f"{valor_deposito:.2f}"
-                }) 
-            print(f"Seu depósito de R${valor_deposito:.2f} foi efetuado!")
+            extrato += f"Deposito: R$ {valor_deposito:.2f}\n" 
+            print(f"Seu depósito de R$ {valor_deposito:.2f} foi efetuado!")
     
     elif opcao == "s":
         if numero_saques >= LIMITE_SAQUES:
@@ -46,13 +44,14 @@ while True:
             else:
                 saldo -= valor_saque
                 numero_saques += 1
-                extrato.append({
-                "saque": f"{valor_saque:.2f}"
-                }) 
-                print(f"Saque de R${valor_saque} realizado!")
+                extrato += f"Saque: R$ {valor_saque:.2f}\n"
+                print(f"Saque de R$ {valor_saque:.2f} realizado!")
 
     elif opcao == "e":
-        print(f"{extrato} \n Saldo: R${saldo:.2f}")
+        print("\n============ EXTRATO ============")
+        print("Não foram realizadas movimentações." if not extrato else extrato)
+        print(f"\nSaldo: R$ {saldo:.2f}")
+        print("=================================")
 
     elif opcao == "q":
         break    
