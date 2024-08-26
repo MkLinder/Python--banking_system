@@ -21,9 +21,9 @@ while True:
         else:
             saldo += valor_deposito
             extrato.append({
-                "deposito": valor_deposito
+                "deposito": f"{valor_deposito:.2f}"
                 }) 
-            print(f"Seu depósito de R${valor_deposito} foi efetuado!")
+            print(f"Seu depósito de R${valor_deposito:.2f} foi efetuado!")
     
     elif opcao == "s":
         if numero_saques >= LIMITE_SAQUES:
@@ -34,8 +34,11 @@ while True:
             
         else:
             valor_saque = float(input("Digite o valor que deseja sacar: R$"))
-            if valor_saque > limite:
-                print(f"O valor limite por saque é de R${limite},00")
+            if valor_saque <= 0:
+                print("Valor inválido!")
+
+            elif valor_saque > limite:
+                print(f"O valor limite por saque é de R${limite:.2f}")
 
             elif valor_saque > saldo:
                 print("Valor de saque superior ao saldo!")
@@ -44,12 +47,12 @@ while True:
                 saldo -= valor_saque
                 numero_saques += 1
                 extrato.append({
-                "saque": valor_saque
+                "saque": f"{valor_saque:.2f}"
                 }) 
                 print(f"Saque de R${valor_saque} realizado!")
 
     elif opcao == "e":
-        print(f"{extrato} \n R${saldo:.2f}")
+        print(f"{extrato} \n Saldo: R${saldo:.2f}")
 
     elif opcao == "q":
         break    
