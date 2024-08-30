@@ -1,10 +1,11 @@
 from database.Registered_users import users
 from middleware.Validate_cpf import validate_cpf
+from middleware.Name_formatter import name_formatter
 
 
 def get_user_data():
     def register_user(name, date, cpf, address):
-        new_user = {"nome": name, "data_nascimento": date, "cpf": cpf, "endereco": address}
+        new_user = {"nome": name, "data_nascimento": date, "cpf": cpf, "endereco": address, "account": False}
         users.append(new_user)
         print("Usuário cadastrado!")
 
@@ -15,10 +16,7 @@ def get_user_data():
         if len(name) < 4:
             print("Digite um nome válido.")
         else :
-            name = name.split(' ')
-            formatted_name = ''
-            for word in name:
-                formatted_name += f"{word.capitalize()} "
+            formatted_name = name_formatter(name)
             complete_user["name"] = formatted_name.rstrip()
         
     while complete_user["date"] == "":
@@ -45,4 +43,9 @@ def get_user_data():
         else:
             complete_user["address"] = address
 
-    register_user(complete_user["name"], complete_user["date"], complete_user["cpf"], complete_user["address"])
+    register_user(
+        complete_user["name"], 
+        complete_user["date"], 
+        complete_user["cpf"], 
+        complete_user["address"]
+    )

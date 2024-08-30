@@ -1,17 +1,26 @@
-# from controllers.menu.Home_menu import home_menu
+from controllers.menu.Home_menu import home_menu
 # from controllers.menu.Menu_account_options import menu
 
 # from controllers.account.Deposit import deposit
 # from controllers.account.Withdrawal import withdrawal
 # from controllers.account.Extract import extract
+from controllers.account.Create_account import create_account
+
 from controllers.user.Register_user import get_user_data
+
 
 # from database.default_inf import default
 
 
 while True:
 
-    get_user_data()
+    option = input(home_menu)
+
+    if option == "c":
+         get_user_data()
+    elif option == "a":
+        create_account()
+   
 
 
 

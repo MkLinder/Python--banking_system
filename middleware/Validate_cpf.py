@@ -6,10 +6,9 @@ def validate_cpf(cpf):
         return True
 
     else:
-        for user in users:
-            if user["cpf"] == cpf:
-                print("Este CPF não está disponível.")
-                return False
+        cpf_found = [u for u in users if u["cpf"] == cpf]
 
-            else:
-                return True  
+        if cpf_found:
+            print("Este CPF não está disponível.")
+        else:
+                return True      

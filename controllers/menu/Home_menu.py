@@ -6,5 +6,6 @@ home_menu = """
     [C] Cadastrar cliente
     [A] Abrir conta
     [L] Acessar conta
+    [S] Sair
     ================================
 """
