@@ -11,4 +11,4 @@ def validate_cpf(cpf):
         if cpf_found:
             print("Este CPF não está disponível.")
         else:
-                return True      
+            return True      

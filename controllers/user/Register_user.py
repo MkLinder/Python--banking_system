@@ -1,32 +1,35 @@
 from database.Registered_users import users
+
 from middleware.Validate_cpf import validate_cpf
 from middleware.Name_formatter import name_formatter
 
 
 def get_user_data():
+    
     def register_user(name, date, cpf, address):
-        new_user = {"nome": name, "data_nascimento": date, "cpf": cpf, "endereco": address, "account": False}
+        new_user = {"nome": name, "data_nascimento": date, "cpf": cpf, "endereco": address, "conta": False}
+        
         users.append(new_user)
         print("Usuário cadastrado!")
 
-    complete_user = {"name": "", "date": "", "cpf": "", "address": ""}
+    user_data = {"name": "", "date": "", "cpf": "", "address": ""}
 
-    while complete_user["name"] == "":
+    while user_data["name"] == "":
         name = str(input("Digite seu nome completo: "))
         if len(name) < 4:
             print("Digite um nome válido.")
         else :
             formatted_name = name_formatter(name)
-            complete_user["name"] = formatted_name.rstrip()
+            user_data["name"] = formatted_name.rstrip()
         
-    while complete_user["date"] == "":
+    while user_data["date"] == "":
         date = str(input("Digite sua data de nascimento [dd/mm/aaaa]: "))
         if len(date) < 10:
             print("Digite um formato de data válido [dd/mm/aaaa].")
         else:
-            complete_user["date"] = date
+            user_data["date"] = date
 
-    while complete_user["cpf"] == "":        
+    while user_data["cpf"] == "":        
         cpf = str(input("Digite seu cpf [000.111.222-33]: "))
         if len(cpf) < 14:
             print("Digite um cpf válido no formato [000.111.222-33].")
@@ -34,18 +37,18 @@ def get_user_data():
             is_valid_cpf = validate_cpf(cpf)
 
             if is_valid_cpf:
-                complete_user["cpf"] = cpf
+                user_data["cpf"] = cpf
 
-    while complete_user["address"] == "":
+    while user_data["address"] == "":
         address = str(input("Digite o seu endereço [Rua, número - bairro - cidade/UF]: "))
         if len(address) < 20:
             print("Digite um endereço válido.") 
         else:
-            complete_user["address"] = address
+            user_data["address"] = address
 
     register_user(
-        complete_user["name"], 
-        complete_user["date"], 
-        complete_user["cpf"], 
-        complete_user["address"]
+        user_data["name"], 
+        user_data["date"], 
+        user_data["cpf"], 
+        user_data["address"]
     )
