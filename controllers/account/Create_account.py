@@ -7,21 +7,21 @@ def create_account():
     valid_cpf = False
 
     while valid_cpf == False:
-        user_cpf = str(input("Digite o seu cpf [000.111.222-33]: "))
+        user_cpf = str(input("Digite o seu cpf [00011122233]: "))
 
-        if len(user_cpf) < 14:
+        if len(user_cpf) != 11:
             print("Formato inválido!")
             
         else:
             user_found = [u for u in users if u["cpf"] == user_cpf]
 
             if user_found:
-                db_account_found = [
-                    a for a in accounts["accounts_list"] if a["conta"] == user_found[0]["conta"]
+                db_user_accounts = [
+                    a for a in user_found[0]["contas"]
                 ]
 
-                if db_account_found:
-                    print("Já existe uma conta vinculada a este CPF.")
+                if len(db_user_accounts) >= 4: # Limite de 4 contas por CPF
+                    print("Limite de número de contas atingido!")
 
                 else:
                     new_account["titular"] = user_found[0]["nome"]
@@ -36,7 +36,7 @@ def create_account():
                         "WITHDRAWALS_LIMIT": 3
                     })
 
-                    user_found[0]["conta"] = new_account["conta"]
+                    user_found[0]["contas"].append(new_account["conta"])
                     accounts["account_number"] += 1
                     valid_cpf = True
                     break

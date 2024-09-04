@@ -2,50 +2,70 @@ from database.Registered_users import users
 from database.Accounts import accounts
 from database.Account_operations import account_operations
 
-from controllers.menu.Menu_account_options import account_menu
-
-from controllers.account.Deposit import deposit
-from controllers.account.Withdrawal import withdrawal
-from controllers.account.Extract import extract
+from controllers.menu.Account_operations_menu import account_operations_menu
 
 
 def access_account():
-    user_cpf = str(input("Digite seu CPF [000.111.222-33]: "))
+    user_cpf = str(input("Digite seu CPF [00011122233]: "))
     db_user_found = [u for u in users if u["cpf"] == user_cpf]
+    
     if db_user_found :
-        db_account_found = [a for a in accounts["accounts_list"] if a["conta"] == db_user_found[0]["conta"]]
+        db_user_accounts = [
+            a for a in db_user_found[0]["contas"]
+        ]
 
-        if db_account_found:
-            db_acc_operations = [
-                a_o for a_o in account_operations if a_o["conta"] == db_account_found[0]["conta"]
+        if len(db_user_accounts) == 0:
+            print("Nenhuma conta bancária cadastrada para este usuário.")
+
+        elif len(db_user_accounts) == 1:
+            db_search_acc = [
+                a for a in accounts["accounts_list"] if a["conta"] == db_user_accounts[0]
             ]
 
             user_password = input("Digite sua senha de acesso: ")
-            
-            if user_password != db_account_found[0]["senha"]:
+                
+            if user_password != db_search_acc[0]["senha"]:
                 print("Senha incorreta!")
+
             else:    
-                account_options = input(account_menu(db_user_found[0]["nome"]))
+                db_acc_operations = [ 
+                    a_o for a_o in account_operations if a_o["conta"] == db_user_accounts[0]
+                ]
 
-                while account_options != 'q':
-                    if account_options == 'd':
-                        deposit(db_acc_operations[0])
-                        account_options = input(account_menu(db_user_found[0]["nome"]))
-                            
-                    elif account_options == 's':
-                        withdrawal(db_acc_operations[0])
-                        account_options = input(account_menu(db_user_found[0]["nome"]))
+                account_operations_menu(
+                    db_user_found[0]["nome"], acc_operations = db_acc_operations[0]
+                )   
 
+        elif len(db_user_accounts) > 1:
+            db_acc_list = [
+                a for a in accounts["accounts_list"] if a["titular"] == db_user_found[0]["nome"]
+            ]
 
-                    elif account_options == "e":
-                        extract(db_acc_operations[0])
-                        account_options = input(account_menu(db_user_found[0]["nome"]))
+            choose_account = int(input("Número da conta que deseja acessar: "))
+            search_account = [a for a in db_user_accounts if a == choose_account]
 
-                    elif account_options == "q":
-                        break    
-                    
-                    else:
-                        print("Operação inválida! Por favor, digite uma operação válida.")
+            if search_account:
+                db_search_acc = [
+                    a for a in accounts["accounts_list"] if a["conta"] == search_account[0]
+                ]
+
+                user_password = input("Digite sua senha de acesso: ")
+                
+                if user_password != db_search_acc[0]["senha"]:
+                    print("Senha incorreta!")
+
+                else:    
+                    db_acc_operations = [ 
+                        a_o for a_o in account_operations if a_o["conta"] == search_account[0]
+                    ]
+
+                    account_operations_menu(
+                        db_user_found[0]["nome"], acc_operations = db_acc_operations[0]
+                    )
+
+            if not search_account:
+                print("Conta não encontrada!")      
+
         else:
             print("Nenhuma conta vinculada a este CPF!")
     else:

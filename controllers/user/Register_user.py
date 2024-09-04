@@ -4,10 +4,10 @@ from middleware.Validate_cpf import validate_cpf
 from middleware.Name_formatter import name_formatter
 
 
-def get_user_data():
+def register_user():
     
-    def register_user(name, date, cpf, address):
-        new_user = {"nome": name, "data_nascimento": date, "cpf": cpf, "endereco": address, "conta": False}
+    def get_user_data(name, date, cpf, address):
+        new_user = {"nome": name, "data_nascimento": date, "cpf": cpf, "endereco": address, "contas": []}
         
         users.append(new_user)
         print("Usuário cadastrado!")
@@ -29,15 +29,11 @@ def get_user_data():
         else:
             user_data["date"] = date
 
-    while user_data["cpf"] == "":        
-        cpf = str(input("Digite seu cpf [000.111.222-33]: "))
-        if len(cpf) < 14:
-            print("Digite um cpf válido no formato [000.111.222-33].")
-        else:
-            is_valid_cpf = validate_cpf(cpf)
+    while user_data["cpf"] == "":
+            is_valid_cpf = validate_cpf()
 
             if is_valid_cpf:
-                user_data["cpf"] = cpf
+                user_data["cpf"] = is_valid_cpf
 
     while user_data["address"] == "":
         address = str(input("Digite o seu endereço [Rua, número - bairro - cidade/UF]: "))
@@ -46,7 +42,7 @@ def get_user_data():
         else:
             user_data["address"] = address
 
-    register_user(
+    get_user_data(
         user_data["name"], 
         user_data["date"], 
         user_data["cpf"], 
