@@ -1,7 +1,7 @@
 from datetime import date, datetime, time, timedelta
 
 def deposit(acc_operation):
-    transactions_number_today
+    # transactions_number_today
 
     if acc_operation["transactions_made"] >= acc_operation["TRANSACTIONS_LIMIT"]:
         print("Limite de operações diárias atingido!")
