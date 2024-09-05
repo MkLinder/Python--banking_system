@@ -1,7 +1,7 @@
 def withdrawal(acc_operations):
     
-    if acc_operations["withdrawals_made"] >= acc_operations["WITHDRAWALS_LIMIT"]:
-        print("Você atingiu o limite de saques diários, volte amanhã.")
+    if acc_operations["transactions_made"] >= acc_operations["TRANSACTIONS_LIMIT"]:
+        print("Limite de operações diárias atingido!")
     
     elif acc_operations["balance"] == 0:
         print("Você não possui saldo para sacar!")    
@@ -21,7 +21,7 @@ def withdrawal(acc_operations):
             
         else:
             acc_operations["balance"] -= withdrawal_amount
-            acc_operations["withdrawals_made"] += 1
+            acc_operations["transactions_made"] += 1
             acc_operations["extract"].append(f"Saque: R$ {withdrawal_amount:.2f}")
             
             print(f"Saque de R$ {withdrawal_amount:.2f} realizado!")

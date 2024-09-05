@@ -32,8 +32,8 @@ def create_account():
                         "balance": 0, 
                         "limit": 500, 
                         "extract": [], 
-                        "withdrawals_made": 0, 
-                        "WITHDRAWALS_LIMIT": 3
+                        "transactions_made": 0, 
+                        "TRANSACTIONS_LIMIT": 10
                     })
 
                     user_found[0]["contas"].append(new_account["conta"])
