@@ -1,8 +1,6 @@
 from datetime import date, datetime, time, timedelta
 
 def deposit(acc_operation):
-    transactions_number_today
-
     if acc_operation["transactions_made"] >= acc_operation["TRANSACTIONS_LIMIT"]:
         print("Limite de operações diárias atingido!")
         return
@@ -12,12 +10,10 @@ def deposit(acc_operation):
         print("Valor inválido!")
 
     else:
-        date = datetime.now().strftime("%d/%m/%Y %H:%M")
         acc_operation["balance"] += deposit_amount
         acc_operation["extract"].append(
             {
-                "Deposito": f"R$ {deposit_amount:.2f}",
-                "Data_transacao": date
+                "Deposito": f"R$ {deposit_amount:.2f}"
             }
         )
         acc_operation["transactions_made"] += 1
