@@ -25,7 +25,7 @@ def register_user():
     while user_data["date"] == "":
         date = str(input("Digite sua data de nascimento [dd/mm/aaaa]: "))
         if len(date) < 10:
-            print("Digite um formato de data válido [dd/mm/aaaa].")
+            print("Digite um formato válido [dd/mm/aaaa].")
         else:
             user_data["date"] = date
 

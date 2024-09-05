@@ -37,10 +37,6 @@ def access_account():
                 )   
 
         elif len(db_user_accounts) > 1:
-            db_acc_list = [
-                a for a in accounts["accounts_list"] if a["titular"] == db_user_found[0]["nome"]
-            ]
-
             choose_account = int(input("Número da conta que deseja acessar: "))
             search_account = [a for a in db_user_accounts if a == choose_account]
 

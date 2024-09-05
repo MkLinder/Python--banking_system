@@ -5,7 +5,7 @@ from controllers.account.Extract import extract
 def account_operations_menu(user_name, acc_operations):
     menu_options = f"""
     ========== FICTI BANK ==========
-    Olá, {user_name}.
+    Olá, {user_name.split(' ')[0]}.
     O que deseja fazer?
     
         [D] Depositar
