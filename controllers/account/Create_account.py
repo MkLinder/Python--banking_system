@@ -2,6 +2,7 @@ from database.Accounts import accounts
 from database.Account_operations import account_operations
 from database.Registered_users import users
 
+
 def create_account():
     new_account = {"agencia": "0001", "conta": "", "titular": "", "senha": ""}
     valid_cpf = False
@@ -32,7 +33,6 @@ def create_account():
                         "balance": 0, 
                         "limit": 500, 
                         "extract": [], 
-                        "transactions_made": 0, 
                         "TRANSACTIONS_LIMIT": 10
                     })
 

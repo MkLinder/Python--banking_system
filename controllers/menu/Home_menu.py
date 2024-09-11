@@ -3,6 +3,7 @@ from controllers.account.Access_account import access_account
 
 from controllers.user.Register_user import register_user
 
+
 def home_menu():
     options_menu = """
     ========== FICTI BANK ==========
