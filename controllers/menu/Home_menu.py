@@ -1,22 +1,24 @@
+import textwrap
+
 from controllers.account.Create_account import create_account
 from controllers.account.Access_account import access_account
 
 from controllers.user.Register_user import register_user
 
 def home_menu():
-    options_menu = """
+    options_menu = """\n
     ========== FICTI BANK ==========
-    Seja bem vindo(a).
-    O que você deseja?
+    \tSeja bem vindo(a).
+    \tO que você deseja?
 
     [C] Cadastrar cliente
     [A] Abrir conta
     [E] Acessar conta
     [Q] Sair
     ================================
-    """
+    => """
 
-    option = input(options_menu)
+    option = input(textwrap.dedent(options_menu))
 
     while True:
 

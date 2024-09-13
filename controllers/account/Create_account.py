@@ -31,7 +31,7 @@ def create_account():
                         "conta": new_account["conta"],
                         "balance": 0, 
                         "limit": 500, 
-                        "extract": [], 
+                        "extract": "", 
                         "transactions_made": 0, 
                         "TRANSACTIONS_LIMIT": 10
                     })
