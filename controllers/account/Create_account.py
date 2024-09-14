@@ -11,7 +11,7 @@ def create_account():
         user_cpf = str(input("Digite o seu cpf [00011122233]: "))
 
         if len(user_cpf) != 11:
-            print("Formato inválido!")
+            print("\nFormato inválido!")
             
         else:
             user_found = [u for u in users if u["cpf"] == user_cpf]
@@ -22,7 +22,7 @@ def create_account():
                 ]
 
                 if len(db_user_accounts) >= 4: # Limite de 4 contas por CPF
-                    print("Limite de número de contas atingido!")
+                    print("\nLimite de número de contas atingido!")
 
                 else:
                     new_account["titular"] = user_found[0]["nome"]
@@ -33,6 +33,7 @@ def create_account():
                         "balance": 0, 
                         "limit": 500, 
                         "extract": [], 
+                        "transactions_made": 0, 
                         "TRANSACTIONS_LIMIT": 10
                     })
 
@@ -41,15 +42,15 @@ def create_account():
                     valid_cpf = True
                     break
             else:
-                print("Usuário não encontrado! Faça o cadastro de cliente antes de abrir a conta.")
+                print("\nUsuário não encontrado! Faça o cadastro de cliente antes de abrir a conta.")
 
     while new_account["senha"] == "":
         new_pass = str(input("Crie uma senha com no mínimo 4 números: "))
         if len(new_pass) < 4:
-            print("A senha deve ter no mínimo 4 números!")
+            print("\nA senha deve ter no mínimo 4 números!")
         else:
             new_account["senha"] = new_pass
 
     accounts["accounts_list"].append(new_account)
     valid_cpf = False
-    print("Conta criada com sucesso! Você já pode acessar a sua conta.")                              
+    print("\nConta criada com sucesso! Você já pode acessar a sua conta.")                              

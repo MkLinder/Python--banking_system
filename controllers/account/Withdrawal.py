@@ -3,34 +3,33 @@ from middleware.Date_time import compare_date, record_date_time
 
 def withdrawal(acc_operations):
     if acc_operations["extract"]:
-        limit_trans_today = compare_date(acc_operations)
+        trans_limit_today = compare_date(acc_operations)
 
-        if limit_trans_today:
+        if trans_limit_today:
             return
 
     if acc_operations["balance"] == 0:
-        print("Você não possui saldo para sacar!")    
+        print("\nVocê não possui saldo para sacar!")    
         
     else:
         withdrawal_amount = int(input("Digite o valor que deseja sacar: R$"))
         if withdrawal_amount <= 0:
-            print("Valor inválido!")
+            print("\nValor inválido!")
 
         elif withdrawal_amount > acc_operations["limit"]:
             print(
-                f"O valor limite por saque é de R${acc_operations["limit"]:.2f}"
+                f"\nO valor limite por saque é de R${acc_operations["limit"]:.2f}"
             )
 
         elif withdrawal_amount > acc_operations["balance"]:
-            print("Valor de saque superior ao saldo!")
+            print("\nValor de saque superior ao saldo!")
             
         else:
             date = record_date_time()
             acc_operations["balance"] -= withdrawal_amount
             acc_operations["extract"].append(
                 {
-                    "Saque": f"R$ {withdrawal_amount:.2f}",
-                    "Data_transacao": date
+                    "Saque": f"\tR${withdrawal_amount:.2f}", "Data_trans.": date
                 }
             )
-            print(f"Saque de R$ {withdrawal_amount:.2f} realizado!")
+            print(f"\nSaque de R$ {withdrawal_amount:.2f} realizado!")

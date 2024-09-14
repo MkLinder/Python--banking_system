@@ -15,7 +15,7 @@ def access_account():
         ]
 
         if len(db_user_accounts) == 0:
-            print("Nenhuma conta bancária cadastrada para este usuário.")
+            print("\nNenhuma conta bancária cadastrada para este usuário.")
 
         elif len(db_user_accounts) == 1:
             db_search_acc = [
@@ -25,7 +25,7 @@ def access_account():
             user_password = input("Digite sua senha de acesso: ")
                 
             if user_password != db_search_acc[0]["senha"]:
-                print("Senha incorreta!")
+                print("\nSenha incorreta!")
 
             else:    
                 db_acc_operations = [ 
@@ -33,7 +33,8 @@ def access_account():
                 ]
 
                 account_operations_menu(
-                    db_user_found[0]["nome"], acc_operations = db_acc_operations[0]
+                    db_user_found[0]["nome"],
+                    acc_operations = db_acc_operations[0]
                 )   
 
         elif len(db_user_accounts) > 1:
@@ -48,7 +49,7 @@ def access_account():
                 user_password = input("Digite sua senha de acesso: ")
                 
                 if user_password != db_search_acc[0]["senha"]:
-                    print("Senha incorreta!")
+                    print("\nSenha incorreta!")
 
                 else:    
                     db_acc_operations = [ 
@@ -56,13 +57,14 @@ def access_account():
                     ]
 
                     account_operations_menu(
-                        db_user_found[0]["nome"], acc_operations = db_acc_operations[0]
+                        db_user_found[0]["nome"],
+                        acc_operations = db_acc_operations[0]
                     )
 
             if not search_account:
-                print("Conta não encontrada!")      
+                print("\nConta não encontrada!")      
 
         else:
-            print("Nenhuma conta vinculada a este CPF!")
+            print("\nNenhuma conta vinculada a este CPF!")
     else:
-        print("Usuário não encontrado! ")
+        print("\nUsuário não encontrado! ")

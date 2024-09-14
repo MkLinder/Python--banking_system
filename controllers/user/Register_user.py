@@ -10,14 +10,14 @@ def register_user():
         new_user = {"nome": name, "data_nascimento": date, "cpf": cpf, "endereco": address, "contas": []}
         
         users.append(new_user)
-        print("Usuário cadastrado!")
+        print("\nUsuário cadastrado!")
 
     user_data = {"name": "", "date": "", "cpf": "", "address": ""}
 
     while user_data["name"] == "":
         name = str(input("Digite seu nome completo: "))
         if len(name) < 4:
-            print("Digite um nome válido.")
+            print("\nDigite um nome válido.")
         else :
             formatted_name = name_formatter(name)
             user_data["name"] = formatted_name.rstrip()
@@ -25,7 +25,7 @@ def register_user():
     while user_data["date"] == "":
         date = str(input("Digite sua data de nascimento [dd/mm/aaaa]: "))
         if len(date) < 10:
-            print("Digite um formato válido [dd/mm/aaaa].")
+            print("\nDigite um formato válido [dd/mm/aaaa].")
         else:
             user_data["date"] = date
 
@@ -38,7 +38,7 @@ def register_user():
     while user_data["address"] == "":
         address = str(input("Digite o seu endereço [Rua, número - bairro - cidade/UF]: "))
         if len(address) < 20:
-            print("Digite um endereço válido.") 
+            print("\nDigite um endereço válido.") 
         else:
             user_data["address"] = address
 

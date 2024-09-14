@@ -4,14 +4,14 @@ from controllers.account.Extract import extract
 
 def account_operations_menu(user_name, acc_operations):
     menu_options = f"""
-    ========== FICTI BANK ==========
-    Olá, {user_name.split(' ')[0]}.
-    O que deseja fazer?
+    ========== FICTI BANK ==========\n
+    \tOlá, {user_name.split(' ')[0]}.
+    \tO que deseja fazer?
     
-        [D] Depositar
-        [S] Sacar
-        [E] Extrato
-        [Q] Sair
+    [D] Depositar
+    [S] Sacar
+    [E] Extrato
+    [Q] Sair
     ================================
     """
 
@@ -27,12 +27,12 @@ def account_operations_menu(user_name, acc_operations):
             option = input(menu_options)
 
         elif option == "e":
-            extract(acc_operations)
+            extract(acc_operations,)
             option = input(menu_options)
 
         elif option == "q":
             break    
         
         else:
-            print("Operação inválida! Por favor, digite uma operação válida.")
+            print("\nOperação inválida! Por favor, digite uma opção válida.")
             option = input(menu_options)
